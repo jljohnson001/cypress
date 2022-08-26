@@ -61,8 +61,14 @@
         />
       </button>
     </div>
-    <button
-      class="
+    <div class="controls">
+      <Tooltip
+        data-cy="tooltip"
+        placement="bottom"
+      >
+        <button
+          id="newSpecBtn"
+          class="
         rounded-md flex
         outline-none
         border-1
@@ -76,11 +82,23 @@
         hocus:ring-0
         hocus:border-indigo-300
       "
-      :aria-label="t('specPage.newSpecButton')"
-      @click="emit('newSpec')"
-    >
-      <i-cy-add-small_x16 class="icon-light-gray-50 icon-dark-gray-200" />
-    </button>
+          :aria-label="t('specPage.newSpecButton')"
+          @click="emit('newSpec')"
+        >
+          <i-cy-add-small_x16 class="icon-light-gray-50 icon-dark-gray-200" />
+        </button>
+        <template
+          #popper
+        >
+          <p
+            data-cy="new-spec-tooltip"
+            class="max-w-sm text-sm truncate overflow-hidden"
+          >
+            Create new spec
+          </p>
+        </template>
+      </Tooltip>
+    </div>
     <div
       class="sr-only"
       aria-live="polite"
@@ -93,6 +111,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useI18n } from '@cy/i18n'
+import Tooltip from '@cy/components/Tooltip.vue'
 
 const { t } = useI18n()
 const props = defineProps<{

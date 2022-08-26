@@ -62,18 +62,6 @@ describe('<SpecsListHeader />', { keystrokeDelay: 0 }, () => {
     .should('have.been.called')
   })
 
-  it('provides expected tooltip content', () => {
-    cy.mount(() => (<div class="max-w-800px p-12 resize overflow-auto"><SpecsListHeader
-    /></div>))
-    .get(buttonSelector)
-    .realHover()
-
-    cy.get('[data-cy=new-spec-tooltip]')
-    .should('contain.text', 'Create New Spec')
-
-    cy.percySnapshot()
-  })
-
   it('emits a spec pattern event', () => {
     const onShowSpecPatternModal = cy.stub().as('show-spec-pattern-modal')
     const search = ref('')

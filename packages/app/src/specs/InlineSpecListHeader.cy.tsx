@@ -40,6 +40,14 @@ describe('InlineSpecListHeader', () => {
     .should('have.been.called')
   })
 
+  it('provides expected tooltip content', () => {
+    mountWithResultCount(0)
+    cy.findAllByLabelText(defaultMessages.specPage.newSpecButton)
+    cy.get('.v-popper').trigger('mouseenter')
+    cy.findByTestId('new-spec-tooltip').should('be.visible')
+    .and('include.text', 'Create new spec')
+  })
+
   it('clears search field when clear button is clicked', () => {
     mountWithResultCount(0)
 
